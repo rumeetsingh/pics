@@ -7,14 +7,14 @@ class SearchBar extends React.Component {
 
     onFormSubmit = (event) => {
         event.preventDefault();
-        console.log(this.state.term);
+        this.props.onSubmit(this.state.term);
     };
 
     onInputChange = (event) => {
         this.setState({ term:event.target.value });
     };
 
-    showingResults() {
+    showingResults = () => {
         if(this.state.term){
             return <small>Search Results for: {this.state.term}</small>;
         };
@@ -33,7 +33,7 @@ class SearchBar extends React.Component {
             </div>
         );
     };
-};
+}
 
 
 export default SearchBar;
