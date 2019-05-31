@@ -14,21 +14,24 @@ class SearchBar extends React.Component {
         this.setState({ term:event.target.value });
     };
 
-    showingResults = () => {
-        if(this.state.term){
-            return <small>Search Results for: {this.state.term}</small>;
-        };
+    countImages = (count) => {
+        if(count>0){
+            return <small>{count} Results Found</small>;
+        }
     };
 
     render() {
         return (
-            <div>
+            <div style={{height:'130px'}}>
                 <form onSubmit={this.onFormSubmit} >
-                    <div className="form-group">
-                        <label htmlFor="search-text-input">Image Search</label>
-                        <input autoComplete="off" type="text" value={this.state.term} className="form-control" id="search-text-input" onChange={this.onInputChange} />
-                        { this.showingResults() }
+                <label htmlFor="input-grp">Image Search</label>
+                    <div id="input-grp" className="input-group">
+                        <input autoComplete="off" type="text" value={this.state.term} className="form-control" onChange={this.onInputChange} />
+                        <div class="input-group-append">
+                            <button  type="submit" class="btn btn-primary">Search</button>
+                        </div>
                     </div>
+                    { this.countImages(this.props.imgCount) }
                 </form>
             </div>
         );
